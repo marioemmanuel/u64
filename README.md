@@ -105,3 +105,4 @@ For certain special embedded systems unsigned long might be 32 bits, in that cas
 The system does not guarantee portability across systems or compilers for persistence since the persistence is implemented as a memory dump of the database struct.
 
 These limitations are likely not relevant but need to be taken into consideration.
+
