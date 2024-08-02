@@ -7,13 +7,13 @@
 u64 is a key value database library with the following characteristics:
 
 - Written in strict ANSI C89 (highly portable).
-- No dependecies on external libraries.
+- No dependencies on external libraries.
 - Single threaded (intended to be embeddable with another processes).
 - Simple and lightweight.
 - Fast and performant through sorted storage of database items.
 - Keys are unsigned long 64 bits.
 - Values are arbitrary length of bytes.
-- Commands and outputs via stdin and stdout (intended to be used as embbeded 
+- Commands and outputs via stdin and stdout (intended to be used as embedded 
   database in systems).
 - Front end for testing available.
 - Four CRUD operations implemented as main commands: Create/Read/Update/Delete.
@@ -27,7 +27,7 @@ u64 is a key value database library with the following characteristics:
 u64 is a simple but powerful embeddable database. It covers a niche area 
 where 64 bits keys suffice.
 
-It is designed to cover by default a 1.000.000 item database, but that value is
+It is designed to cover by default a 1,000,000 item database, but that value is
 configurable.
 
 u64 was designed as an auxiliary LLM knowledge database for fast retrieval
@@ -87,13 +87,13 @@ Function delete
 
 ### 6.5 Read index record
 
-Function read_index
+Function read_by_index
 
 ## 7. Compiling
 
-make will compile the static library libu64
+`make` will compile the static library libu64
 
-make demo will compile a program named demo that shows how to use the library
+`make demo` will compile a program named `demo` that shows how to use the library
 
 ## 8. Caveats: unsigned long and endianness
 
@@ -102,6 +102,6 @@ However, in almost every modern system (even in 20 years old 32 bit systems) thi
 
 For certain special embedded systems unsigned long might be 32 bits, in that case the database will be 32 bits based.
 
-The system does not warranty portability across systems or compilers for persistence since the persistence is implemented as a memory dump of the databse struct.
+The system does not guarantee portability across systems or compilers for persistence since the persistence is implemented as a memory dump of the database struct.
 
 These limitations are likely not relevant but need to be taken into consideration.
