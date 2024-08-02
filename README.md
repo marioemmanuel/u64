@@ -4,7 +4,7 @@
 
 ## 1. Description
 
-![U-64](U-64.png)
+![U-64](u64.jpg)
 
 U-64 is a key value database library with the following characteristics:
 
