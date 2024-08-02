@@ -47,7 +47,7 @@ int binary_search(Database* db, unsigned long key) {
 
 void create(Database* db, unsigned long key, const unsigned char* value, size_t value_size) {
 
-	int i;
+    int i;
 
     if (db->size >= db->limit) {
         printf("Database is full\n");
@@ -96,7 +96,7 @@ void update(Database* db, unsigned long key, const unsigned char* value, size_t 
 }
 
 void delete(Database* db, unsigned long key) {
-	int i;
+    int i;
     int index = binary_search(db, key);
     if (index < db->size && db->keys[index] == key) {
         free(db->values[index]);  /* Free the value memory */

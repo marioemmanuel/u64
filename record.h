@@ -4,7 +4,7 @@
    record.h
    DATABASE HEADER FILE
    SEE LICENSE FILE FOR LICENSE DETAILS
-*/	
+*/  
 
 #ifndef _U64_RECORD_H
 #define _U64_RECORD_H

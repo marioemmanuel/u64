@@ -12,7 +12,7 @@
 #include "db.h"
 
 int read_db(Database* db, const char* filename) {
-	int i;
+    int i;
     FILE* file = fopen(filename, "rb");
     if (!file) {
         return -1;
@@ -32,7 +32,7 @@ int read_db(Database* db, const char* filename) {
 }
 
 int write_db(Database* db, const char* filename) {
-	int i;
+    int i;
     FILE* file = fopen(filename, "wb");
     if (!file) {
         return -1;
