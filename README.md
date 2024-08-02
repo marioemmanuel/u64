@@ -89,3 +89,19 @@ Function delete
 
 Function read_index
 
+## 7. Compiling
+
+make will compile the static library libu64
+
+make demo will compile a program named demo that shows how to use the library
+
+## 8. Caveats: unsigned long and endianness
+
+As the library is written in ANSI C89, it is not enforced that unsigned long (the type used for keys) will be 64 bits.
+However, in almost every modern system (even in 20 years old 32 bit systems) this will be the case. This is also applicable to many modern embedded systems.
+
+For certain special embedded systems unsigned long might be 32 bits, in that case the database will be 32 bits based.
+
+The system does not warranty portability across systems or compilers for persistence since the persistence is implemented as a memory dump of the databse struct.
+
+These limitations are likely not relevant but need to be taken into consideration.
