@@ -1,0 +1,104 @@
+.TH LIBU64 3 "August 2024" "Version 1.0" "libu64 Library"
+.SH NAME
+libu64 \- u64 Key-Value Database Library
+.SH SYNOPSIS
+.nf
+#include "kv_database.h"
+
+void init_db(Database *db);
+void setlimit_db(Database *db, int limit);
+int getlimit_db(Database *db);
+int getsize_db(Database *db);
+int read_db(Database *db, const char *filename);
+int write_db(Database *db, const char *filename);
+void create(Database *db, ulong key, const unsigned char *value, size_t value_size);
+const unsigned char* read(Database *db, ulong key, size_t *value_size);
+void update(Database *db, ulong key, const unsigned char *value, size_t value_size);
+void delete(Database *db, ulong key);
+const unsigned char* read_by_index(Database *db, int index, size_t *value_size);
+.fi
+.SH DESCRIPTION
+The \fBlibu64\fP library is a key-value database library with the following characteristics:
+.IP \[bu] 4
+Written in strict ANSI C89 (highly portable).
+.IP \[bu] 4
+No dependencies on external libraries.
+.IP \[bu] 4
+Single-threaded (intended to be embeddable with other processes).
+.IP \[bu] 4
+Simple and lightweight.
+.IP \[bu] 4
+Fast and performant through sorted storage of database items.
+.IP \[bu] 4
+Keys are unsigned long 64 bits.
+.IP \[bu] 4
+Values are arbitrary length of bytes.
+.IP \[bu] 4
+Commands and outputs via stdin and stdout (intended to be used as an embedded database in systems).
+.IP \[bu] 4
+Front end for testing available.
+.IP \[bu] 4
+Four CRUD operations implemented as main commands: Create, Read, Update, Delete.
+.IP \[bu] 4
+Two operations implemented to allow iteration over items: ReadByIndex and GetSize.
+.IP \[bu] 4
+Two operations implemented to provide persistence via snapshots: ReadDatabase and WriteDatabase.
+.SH FUNCTIONS
+.SS "4.1 DB Initialisation"
+.TP
+.B void init_db(Database *db);
+Initializes the database by setting the size to 0 and the limit to the default value (MAX_SIZE).
+.SS "4.2 Set limit"
+.TP
+.B void setlimit_db(Database *db, int limit);
+Sets the maximum number of items that the database can hold.
+.SS "4.3 Get limit"
+.TP
+.B int getlimit_db(Database *db);
+Retrieves the current limit of the database.
+.SS "4.4 Get number of items in the database"
+.TP
+.B int getsize_db(Database *db);
+Gets the number of items currently stored in the database.
+.SS "5. Persistence related functions"
+.SS "5.1 Read Database"
+.TP
+.B int read_db(Database *db, const char *filename);
+Reads the database from a file and populates the database structure.
+.SS "5.2 Write Database"
+.TP
+.B int write_db(Database *db, const char *filename);
+Writes the current state of the database to a file.
+.SS "6. Record related functions"
+.SS "6.1 Create a record"
+.TP
+.B void create(Database *db, ulong key, const unsigned char *value, size_t value_size);
+Creates a new record in the database with the specified key and value.
+.SS "6.2 Read a record"
+.TP
+.B const unsigned char* read(Database *db, ulong key, size_t *value_size);
+Reads a record from the database by its key.
+.SS "6.3 Update a record"
+.TP
+.B void update(Database *db, ulong key, const unsigned char *value, size_t value_size);
+Updates an existing record in the database with a new value.
+.SS "6.4 Delete a record"
+.TP
+.B void delete(Database *db, ulong key);
+Deletes a record from the database by its key.
+.SS "6.5 Read index record"
+.TP
+.B const unsigned char* read_by_index(Database *db, int index, size_t *value_size);
+Reads a record from the database by its index position.
+.SH AUTHOR
+Mario Emmanuel
+.SH COPYRIGHT
+(C) 2024 Mario Emmanuel
+.SH LICENSE
+This library is provided with dual license capabilities:
+.IP \[bu] 4
+AGPL-3 License.
+.IP \[bu] 4
+Commercial License.
+Contact the author for more information.
+
