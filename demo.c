@@ -4,28 +4,28 @@
    demo.c
    DEMO FILE
    SEE LICENSE FILE FOR LICENSE DETAILS
-*/	
+*/  
 
 #include "db.h"
 #include "persistence.h"
 #include <stdio.h>
 
 int main() {
-	size_t i;
+    size_t i;
     Database db;
     init_database(&db);
     
-	printf("Size before creating item 1: %d\n", getsize_db(&db));
+    printf("Size before creating item 1: %d\n", getsize_db(&db));
 
     unsigned char value1[] = {0x01, 0x02, 0x03, 0x04};
     create(&db, 100, value1, sizeof(value1));
-	
-	printf("Size after creating item 100: %d\n", getsize_db(&db));
+    
+    printf("Size after creating item 100: %d\n", getsize_db(&db));
     
     unsigned char value2[] = {0x11, 0x12, 0x13, 0x14};
     create(&db, 200, value2, sizeof(value2));
-	
-	printf("Size after creating item 200: %d\n", getsize_db(&db));
+    
+    printf("Size after creating item 200: %d\n", getsize_db(&db));
 
     size_t size;
     const unsigned char* read_value = read(&db, 100, &size);
