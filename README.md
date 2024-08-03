@@ -1,6 +1,6 @@
 # u64 KEY VALUE DATABASE
 
-(c) MARIO EMMANUEL 2024
+(c) Mario Emmanuel 2024
 
 ## 1. Description
 
@@ -204,6 +204,8 @@ Function `read_by_index`
 `make` will compile the static library libu64
 
 `make demo` will compile a program named `demo` that shows how to use the library
+
+`make man` will install the man page `libu64` in section 3.
 
 ## 8. Caveats: unsigned long and endianness
 
