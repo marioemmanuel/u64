@@ -11,7 +11,7 @@ MANPAGE = libu64.3
 # Source files
 SRCS = db.c record.c persistence.c
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -std=c89 -Wall
+CFLAGS = -std=c89 -Wall -g
 
 # Header files
 HEADERS = db.h record.h persistence.h

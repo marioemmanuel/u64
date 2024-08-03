@@ -21,11 +21,11 @@ typedef struct {
     int limit;
 } Database;
 
-void init_database(Database* db);
+void init_db(Database* db);
 void setlimit_db(Database* db, int limit);
 int getlimit_db(Database* db);
 int getsize_db(Database* db);
-int binary_search(Database* db, unsigned long key);
+int binary_search_db(Database* db, unsigned long key);
 
 #endif 
 
