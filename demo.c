@@ -8,6 +8,7 @@
 
 #include "db.h"
 #include "persistence.h"
+#include "record.h"
 #include <stdio.h>
 
 int main() {
@@ -15,7 +16,7 @@ int main() {
     Database db;
     init_database(&db);
     
-    printf("Size before creating item 1: %d\n", getsize_db(&db));
+    printf("Size before creating item 100: %d\n", getsize_db(&db));
 
     unsigned char value1[] = {0x01, 0x02, 0x03, 0x04};
     create(&db, 100, value1, sizeof(value1));
@@ -42,7 +43,7 @@ int main() {
 
     read_value = read(&db, 100, &size);
     if (read_value) {
-        printf("Read key 1 after update: ");
+        printf("Read key 100 after update: ");
         for (i = 0; i < size; i++) {
             printf("%02x ", read_value[i]);
         }
