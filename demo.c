@@ -14,7 +14,7 @@
 
 int main() {
     size_t i;
-	
+    
     Database *db = (Database *)malloc(sizeof(Database));
     init_db(db, 1000000);
     
