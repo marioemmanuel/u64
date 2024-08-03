@@ -11,7 +11,7 @@
 #include <string.h>
 #include "db.h"
 
-void create(Database* db, unsigned long key, const unsigned char* value, size_t value_size) {
+void create_record(Database* db, unsigned long key, const unsigned char* value, size_t value_size) {
 
     int i;
 
@@ -20,7 +20,7 @@ void create(Database* db, unsigned long key, const unsigned char* value, size_t 
         return;
     }
 
-    int index = binary_search(db, key);
+    int index = binary_search_db(db, key);
 
     if (index < db->size && db->keys[index] == key) {
         printf("Key already exists\n");
@@ -40,8 +40,8 @@ void create(Database* db, unsigned long key, const unsigned char* value, size_t 
     db->size++;
 }
 
-const unsigned char* read(Database* db, unsigned long key, size_t* value_size) {
-    int index = binary_search(db, key);
+const unsigned char* read_record(Database* db, unsigned long key, size_t* value_size) {
+    int index = binary_search_db(db, key);
     if (index < db->size && db->keys[index] == key) {
         *value_size = db->value_sizes[index];
         return db->values[index];
@@ -49,8 +49,8 @@ const unsigned char* read(Database* db, unsigned long key, size_t* value_size) {
     return NULL;
 }
 
-void update(Database* db, unsigned long key, const unsigned char* value, size_t value_size) {
-    int index = binary_search(db, key);
+void update_record(Database* db, unsigned long key, const unsigned char* value, size_t value_size) {
+    int index = binary_search_db(db, key);
     if (index < db->size && db->keys[index] == key) {
         free(db->values[index]);  /* Free the old value memory */
         db->values[index] = (unsigned char*)malloc(value_size);
@@ -61,9 +61,9 @@ void update(Database* db, unsigned long key, const unsigned char* value, size_t 
     }
 }
 
-void delete(Database* db, unsigned long key) {
+void delete_record(Database* db, unsigned long key) {
     int i;
-    int index = binary_search(db, key);
+    int index = binary_search_db(db, key);
     if (index < db->size && db->keys[index] == key) {
         free(db->values[index]);  /* Free the value memory */
         for (i = index; i < db->size - 1; ++i) {
@@ -77,7 +77,7 @@ void delete(Database* db, unsigned long key) {
     }
 }
 
-const unsigned char* read_by_index(Database* db, int index, size_t* value_size) {
+const unsigned char* read_record_by_index(Database* db, int index, size_t* value_size) {
     if (index >= 0 && index < db->size) {
         *value_size = db->value_sizes[index];
         return db->values[index];
