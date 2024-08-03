@@ -28,9 +28,6 @@ for the keys (unsigned long 64 bits).
 u64 is a simple but powerful embeddable database. It covers a niche area 
 where 64 bits keys suffice.
 
-It is designed to cover by default a 1,000,000 item database, but that value is
-configurable.
-
 u64 was designed as an auxiliary LLM knowledge database for fast retrieval
 of indexed resources in RAG environments.
 
@@ -52,26 +49,15 @@ Images are not covered by this license.
 
 Function `init_db`
 
-**Description**: Initializes the database by setting the size to 0 and the limit to the default value (MAX_SIZE).
+**Description**: Initializes the database by setting the size to 0 and the limit to the provided value.
 
-**Prototype**: `void init_database(Database* db);`
+**Prototype**: `void init_database(Database* db, int limit);`
 
 **Parameters**:
 - `db`: A pointer to the `Database` structure to initialize.
+- `limit`: An int specifying the preallocated space in the Database to store items.
 
-### 4.2 Set limit
-
-Function `setlimit_db`
-
-**Description**: Sets the maximum number of items that the database can hold.
-
-**Prototype**: `void setlimit_db(Database* db, int limit);`
-
-**Parameters**:
-- `db`: A pointer to the `Database` structure.
-- `limit`: The maximum number of items to set.
-
-### 4.3 Get limit
+### 4.2 Get limit
 
 Function `getlimit_db`
 
@@ -84,7 +70,7 @@ Function `getlimit_db`
 
 **Returns**: The current limit of the database.
 
-### 4.4 Get number of items in the database
+### 4.3 Get number of items in the database
 
 Function `getsize_db`
 
@@ -131,11 +117,11 @@ Function `write_db`
 
 ### 6.1 Create a record
 
-Function `create`
+Function `create_record`
 
 **Description**: Creates a new record in the database with the specified key and value.
 
-**Prototype**: `void create(Database* db, unsigned long key, const unsigned char* value, size_t value_size);`
+**Prototype**: `void create_record(Database* db, unsigned long key, const unsigned char* value, size_t value_size);`
 
 **Parameters**:
 - `db`: A pointer to the `Database` structure.
@@ -145,11 +131,11 @@ Function `create`
 
 ### 6.2 Read a record
 
-Function `read`
+Function `read_record`
 
 **Description**: Reads a record from the database by its key.
 
-**Prototype**: `const unsigned char* read(Database* db, unsigned long key, size_t* value_size);`
+**Prototype**: `const unsigned char* read_record(Database* db, unsigned long key, size_t* value_size);`
 
 **Parameters**:
 - `db`: A pointer to the `Database` structure.
@@ -160,11 +146,11 @@ Function `read`
 
 ### 6.3 Update a record
 
-Function `update`
+Function `update_record`
 
 **Description**: Updates an existing record in the database with a new value.
 
-**Prototype**: `void update(Database* db, unsigned long key, const unsigned char* value, size_t value_size);`
+**Prototype**: `void update_record(Database* db, unsigned long key, const unsigned char* value, size_t value_size);`
 
 **Parameters**:
 - `db`: A pointer to the `Database` structure.
@@ -178,7 +164,7 @@ Function `delete`
 
 **Description**: Deletes a record from the database by its key.
 
-**Prototype**: `void delete(Database* db, unsigned long key);`
+**Prototype**: `void delete_record(Database* db, unsigned long key);`
 
 **Parameters**:
 - `db`: A pointer to the `Database` structure.
@@ -186,11 +172,11 @@ Function `delete`
 
 ### 6.5 Read index record
 
-Function `read_by_index`
+Function `read_by_index_record`
 
 **Description**: Reads a record from the database by its index position.
 
-**Prototype**: `const unsigned char* read_by_index(Database* db, int index, size_t* value_size);`
+**Prototype**: `const unsigned char* read_by_index_record(Database* db, int index, size_t* value_size);`
 
 **Parameters**:
 - `db`: A pointer to the `Database` structure.
@@ -218,7 +204,7 @@ The system does not guarantee portability across systems or compilers for persis
 
 These limitations are likely not relevant but need to be taken into consideration.
 
-## 9. About the name
+## 9. About the name / Trivia
 
 The database is named after the fact that it uses 64 bits unsigned long as keys.
 

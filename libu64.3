@@ -12,24 +12,24 @@ void setlimit_db(Database *db, int limit);
 int getlimit_db(Database *db);
 int getsize_db(Database *db);
 
-void create(
+void create_record(
 	Database *db, 
 	unsigned long key, 
 	const unsigned char *value,
 	size_t value_size);
-const unsigned char *read(
+const unsigned char *read_record(
 	Database *db, 
 	unsigned long key,
 	size_t *value_size);
-void update(
+void update_record(
 	Database *db, 
 	unsigned long key, 
 	const unsigned char *value,
 	size_t value_size);
-void delete(
+void delete_record(
 	Database *db, 
 	unsigned long key);
-const unsigned char *read_by_index(
+const unsigned char *read_by_index_record(
 	Database *db, 
 	int index,
 	size_t *value_size);
@@ -72,14 +72,9 @@ characteristics:
 
 .SH DATABASE RELATED FUNCTIONS
 
-.SS "void init_database(Database *db)"
+.SS "void init_database(Database *db, init limit)"
 Initializes the database structure. This function sets the initial size of
-the database to 0 and the limit to \fIMAX_SIZE\fP, which is defined as
-1,000,000 records.
-
-.SS "void setlimit_db(Database *db, int limit)"
-Sets the maximum number of records that can be stored in the database. The
-limit must be a positive integer and no greater than \fIMAX_SIZE\fP.
+the database with the provided limit.
 
 .SS "int getlimit_db(Database *db)"
 Returns the current limit on the number of records in the database.
@@ -89,30 +84,30 @@ Returns the current number of records in the database.
 
 .SH RECORD RELATED FUNCTIONS
 
-.SS "void create(Database *db, unsigned long key, const unsigned char *value, size_t value_size)"
+.SS "void create_record(Database *db, unsigned long key, const unsigned char *value, size_t value_size)"
 .br
 Creates a new record in the database with the specified key and value. If the
 key already exists, the function will print an error message. If the database
 is full, the function will also print an error message.
 
-.SS "const unsigned char *read(Database *db, unsigned long key, size_t *value_size)"
+.SS "const unsigned char *read_record(Database *db, unsigned long key, size_t *value_size)"
 .br
 Reads the value associated with the specified key from the database. If the
 key is found, the function returns a pointer to the value and sets
 \fIvalue_size\fP to the size of the value. If the key is not found, the
 function returns \fBNULL\fP.
 
-.SS "void update(Database *db, unsigned long key, const unsigned char *value, size_t value_size)"
+.SS "void update_record(Database *db, unsigned long key, const unsigned char *value, size_t value_size)"
 .br
 Updates the value associated with the specified key in the database. If the
 key is not found, the function will print an error message.
 
-.SS "void delete(Database *db, unsigned long key)"
+.SS "void delete_record(Database *db, unsigned long key)"
 .br
 Deletes the record associated with the specified key from the database. If
 the key is not found, the function will print an error message.
 
-.SS "const unsigned char *read_by_index(Database *db, int index, size_t *value_size)"
+.SS "const unsigned char *read_by_index_record(Database *db, int index, size_t *value_size)"
 .br
 Reads the value at the specified index from the database. If the index is
 valid, the function returns a pointer to the value and sets \fIvalue_size\fP
@@ -134,15 +129,14 @@ returns \fB0\fP.
 
 .SH EXAMPLE
 .nf
-#include "db.h"
-#include "persistence.h"
+#include "u64.h"
 #include <stdio.h>
 
 int main() {
     Database db;
     init_database(&db);
 
-    unsigned char value1[] = {0x01, 0x02, 0x03, 0x04};
+    unsigned char value100[] = {0x01, 0x02, 0x03, 0x04};
     create(&db, 100, value1, sizeof(value1));
 
     size_t size;

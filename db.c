@@ -11,15 +11,16 @@
 #include <string.h>
 #include "db.h"
 
-void init_db(Database* db) {
+void init_db(Database* db, int limit) {
     db->size = 0;
-    db->limit = MAX_SIZE;
-}
-
-void setlimit_db(Database* db, int limit) {
-    if (limit > 0 && limit <= MAX_SIZE) {
-        db->limit = limit;
-    }
+	db->limit = (size_t) limit;
+    db->keys = (unsigned long *)malloc(sizeof(unsigned long)*db->limit);
+    db->values = (unsigned char **)malloc(sizeof(unsigned char *)*db->limit);
+    db->value_sizes = (size_t *)malloc(sizeof(size_t)*db->limit);
+	if(db->keys == NULL || db->values == NULL || db->value_sizes == NULL) {
+		fprintf(stderr, "ERROR init_db: Can not allocate memory");
+		exit(-1);
+	}
 }
 
 int getlimit_db(Database* db) {
