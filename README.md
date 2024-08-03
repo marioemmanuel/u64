@@ -4,8 +4,6 @@
 
 ## 1. Description
 
-![u64](u64.jpg)
-
 u64 is a key value database library with the following characteristics. It is named after the type used 
 for the keys (unsigned long 64 bits).
 
@@ -218,3 +216,10 @@ The system does not guarantee portability across systems or compilers for persis
 
 These limitations are likely not relevant but need to be taken into consideration.
 
+## 9. About the name
+
+The database is named after the fact that it uses 64 bits unsigned long as keys.
+
+The U-64 was also a Kriegsmarine U-Boat sunk during the invasion of Denmark and Norway (Operation Weserübung) during WWII.
+
+![u64](u64.jpg)
