@@ -1,12 +1,13 @@
-# U-64 KEY VALUE DATABASE
+# u64 KEY VALUE DATABASE
 
 (c) MARIO EMMANUEL 2024
 
 ## 1. Description
 
-![U-64](u64.jpg)
+![u64](u64.jpg)
 
-U-64 is a key value database library with the following characteristics:
+u64 is a key value database library with the following characteristics. It is named after the type used 
+for the keys (unsigned long 64 bits).
 
 - Written in strict ANSI C89 (highly portable).
 - No dependencies on external libraries.
@@ -26,24 +27,26 @@ U-64 is a key value database library with the following characteristics:
 
 ## 2. Audience
 
-U-64 is a simple but powerful embeddable database. It covers a niche area 
+u64 is a simple but powerful embeddable database. It covers a niche area 
 where 64 bits keys suffice.
 
 It is designed to cover by default a 1,000,000 item database, but that value is
 configurable.
 
-U-64 was designed as an auxiliary LLM knowledge database for fast retrieval
+u64 was designed as an auxiliary LLM knowledge database for fast retrieval
 of indexed resources in RAG environments.
 
 ## 3. License
 
-U-64 is provided with dual license capabilities:
+u64 is provided with dual license capabilities:
 
 AGPL-3 License.
 Commercial License.
 
 This repo contains the AGPL-3 License. A commercial license is also available
 for commercial applications. Contact the author for more information.
+
+Images are not covered by this license.
 
 ## 4. Database related functions
 
@@ -200,7 +203,7 @@ Function `read_by_index`
 
 ## 7. Compiling
 
-`make` will compile the static library libU-64
+`make` will compile the static library libu64
 
 `make demo` will compile a program named `demo` that shows how to use the library
 
